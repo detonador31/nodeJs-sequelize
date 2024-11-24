@@ -1,0 +1,15 @@
+<h2>Usuários Cadastrados</h2>
+
+<div class="index-container">
+    {{#each users}}
+    <div class="item">
+        <h4><strong>{{name}}</strong></h4>
+        <p>{{occupation}}</p>
+        <div class="actions">
+            <a class="delete" href="/users/delete/{{ id }}">Delete</a>
+            <a class="detail" href="/users/detail/{{ id }}">Detalhes</a>
+            <a class="edit" href="/users/edit/{{ id }}">Editar</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

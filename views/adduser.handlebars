@@ -1,0 +1,79 @@
+<h2>Editar usuário</h2>
+
+<form action="/users/save" method="POST">
+    <input id="id" name="id" value="{{ user.id }}" hidden />
+    <div class="form-control">
+        <label for="name">Nome:</label>
+        <input type="text" name="name" value="{{ user.name }}" placeholder="Digite o nome do usuário" />
+    </div>
+    <div class="form-control">
+        <label for="occupation">Profissão:</label>
+        <input type="text" name="occupation" value="{{ user.occupation }}" placeholder="Digite a profissão" />
+    </div>
+    <div class="form-control form-checkbox">
+        {{#if user.newsletter}}
+        <input type="checkbox" name="newsletter" checked />
+        {{else }}
+        <input type="checkbox" name="newsletter" />
+        {{/if}}
+        <label for="newsletter">Enviar Promoções:</label>
+    </div><br />
+    <div class="formsubmit">
+        <input type="submit" value="Salvar" />
+    </div>
+</form>
+{{#if user }}
+<div class="address-container">
+    <h2>Endereços:</h2>
+    <form action="/address/save" method="POST">
+        <input name="userId" value="{{ user.id }}" hidden />
+        <div class="form-control">
+            <label for="street">Rua:</label>
+            <input type="text" name="street" placeholder="Digite o nome da Rua" />
+        </div>
+        <div class="form-control">
+            <label for="number">Número:</label>
+            <input type="text" name="number" placeholder="Dígite o número" />
+        </div>
+        <div class="form-control">
+            <label for="city">Cidade:</label>
+            <input type="text" name="city" placeholder="Digite a Cidade" />
+        </div>
+        <div class="formsubmit">
+            <input type="submit" value="Salvar" />
+        </div>
+    </form>
+
+</div>
+<div class="address-list">
+    <h2>Lista de Endereços</h2>
+    {{#each user.Addresses }}
+    <div class="address-table">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        #{{id}} -
+                    </td>
+                    <td>
+                        {{street}} -
+                    </td>
+                    <td>
+                        {{number}} -
+                    </td>
+                    <td>
+                        {{city}}
+                    </td>
+                    <td>
+                        <div class="actions-inside-list">
+                            <a class="delete" href="/address/delete/{{ id }}">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{/each }}
+</div>
+
+{{/if }}
